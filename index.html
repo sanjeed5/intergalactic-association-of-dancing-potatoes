@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕺💃 Intergalactic Dancing Potatoes!!! 🥔🚀</title>
+    <style>
+        body {
+            background: #ff99cc;
+            font-family: 'Comic Sans MS', cursive;
+            text-align: center;
+        }
+
+        .potato-leader {
+            animation: spin 2s linear infinite;
+            font-size: 5em;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .dance-floor {
+            background: repeating-linear-gradient(
+                45deg,
+                #ff0000,
+                #ff0000 10px,
+                #00ff00 10px,
+                #00ff00 20px
+            );
+            padding: 20px;
+            margin: 20px;
+            border-radius: 50px;
+        }
+
+        .tater-gallery span {
+            font-size: 5em;
+            display: inline-block;
+            margin: 20px;
+            transition: 0.3s;
+        }
+
+        .tater-gallery span:hover {
+            transform: scale(1.5) rotate(180deg);
+        }
+
+        #emergency-button {
+            background: #ff0000;
+            padding: 20px;
+            font-size: 2em;
+            border: 5px dotted yellow;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 20px;
+        }
+
+        .disco-ball {
+            font-size: 4em;
+            animation: bounce 0.5s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <h1>🌟 Welcome to the Intergalactic Association of Dancing Potatoes! 🌟</h1>
+    
+    <div class="potato-leader">🥔</div>
+    
+    <div class="dance-floor">
+        <h2>🪩 Current Dance Floor Status 🪩</h2>
+        <p>Number of potatoes currently boogieing: <span id="potato-count">∞</span></p>
+        <button onclick="startDanceParty()" id="emergency-button">
+            DANCE EMERGENCY!
+        </button>
+    </div>
+
+    <div class="tater-gallery">
+        <h3>🎨 Famous Dancing Taters Through History 🎨</h3>
+        <span>🥔</span> <!-- Regular Dancing Potato -->
+        <span>🕺</span> <!-- Disco Potato -->
+        <span>💃</span> <!-- Salsa Potato -->
+        <span>👯</span> <!-- Can-Can Potatoes -->
+        <span>🕴️</span> <!-- Business Potato -->
+    </div>
+
+    <div id="party-container"></div>
+
+    <div>
+        <h2>🕒 Countdown to Next Cosmic Spud Shindig 🕒</h2>
+        <p id="countdown">Calculating intergalactic potato time...</p>
+        <div class="disco-ball">🪩</div>
+    </div>
+
+    <script>
+        function startDanceParty() {
+            const container = document.getElementById('party-container');
+            container.innerHTML = '';
+            
+            // Add dancing potatoes
+            const danceMoves = ['🥔', '🕺', '💃', '👯', '🕴️'];
+            for(let i = 0; i < 20; i++) {
+                const potato = document.createElement('div');
+                potato.style = `font-size: ${Math.random() * 50 + 20}px;
+                                position: absolute;
+                                left: ${Math.random() * 80}%;
+                                top: ${Math.random() * 80}%;
+                                animation: spin ${Math.random() * 2 + 1}s linear infinite;`;
+                potato.innerHTML = danceMoves[Math.floor(Math.random() * danceMoves.length)];
+                container.appendChild(potato);
+            }
+
+            // Add sound effect
+            const audio = new Audio('https://www.soundjay.com/buttons/sounds/button-35.mp3');
+            audio.loop = true;
+            audio.play();
+
+            // Confetti effect
+            const colors = ['#ff0000', '#00ff00', '#0000ff'];
+            setInterval(() => {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: colors
+                });
+            }, 500);
+        }
+
+        // Countdown timer
+        const targetDate = new Date().getTime() + 123456789;
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').innerHTML = 
+                `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds until next potato rave!`;
+        }, 1000);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</body>
+</html>
